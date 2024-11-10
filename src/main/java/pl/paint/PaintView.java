@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 
 public final class PaintView extends BorderPane {
     private final DrawingCanvas canvas = new DrawingCanvas();
+    private final ToolController tools = new ToolController(canvas);
 
     public PaintView(Stage owner) {
         Menu file = new Menu("Pliki");
@@ -23,6 +24,12 @@ public final class PaintView extends BorderPane {
         info.getItems().add(about);
         ToolBar toolbar = new ToolBar();
 
+        Button select = new Button("Wybierz");
+        select.setOnAction(event -> tools.select());
+        toolbar.getItems().add(select);
+        Button ellipse = new Button("Okrąg");
+ellipse.setOnAction(event -> tools.activate(new EllipseTool(canvas)));
+toolbar.getItems().add(ellipse);
 
         setTop(new VBox(new MenuBar(file, info), toolbar));
         setCenter(canvas);
