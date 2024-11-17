@@ -30,6 +30,9 @@ public final class PaintView extends BorderPane {
         Button ellipse = new Button("Okrąg");
 ellipse.setOnAction(event -> tools.activate(new EllipseTool(canvas)));
 toolbar.getItems().add(ellipse);
+Button rectangle = new Button("Prostokąt");
+rectangle.setOnAction(event -> tools.activate(new RectangleTool(canvas)));
+toolbar.getItems().add(rectangle);
 
         setTop(new VBox(new MenuBar(file, info), toolbar));
         setCenter(canvas);
