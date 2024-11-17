@@ -33,6 +33,9 @@ toolbar.getItems().add(ellipse);
 Button rectangle = new Button("Prostokąt");
 rectangle.setOnAction(event -> tools.activate(new RectangleTool(canvas)));
 toolbar.getItems().add(rectangle);
+Button polygon = new Button("Wielokąt");
+polygon.setOnAction(event -> tools.activate(new PolygonTool(canvas)));
+toolbar.getItems().add(polygon);
 
         setTop(new VBox(new MenuBar(file, info), toolbar));
         setCenter(canvas);
