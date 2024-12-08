@@ -37,6 +37,11 @@ Button polygon = new Button("Wielokąt");
 polygon.setOnAction(event -> tools.activate(new PolygonTool(canvas)));
 toolbar.getItems().add(polygon);
 
+        DocumentActions documents = new DocumentActions(owner, canvas, tools);
+        MenuItem save = new MenuItem("Zapisz");
+        save.setOnAction(event -> documents.save());
+        file.getItems().add(save);
+
         setTop(new VBox(new MenuBar(file, info), toolbar));
         setCenter(canvas);
         Rectangle clip = new Rectangle();
