@@ -30,6 +30,18 @@ public final class DocumentActions {
         }
     }
 
+    public void load() {
+        File file = chooser().showOpenDialog(owner);
+        if (file == null) return;
+        try {
+            var loaded = storage.load(file.toPath());
+            tools.select();
+            canvas.replaceShapes(loaded);
+        } catch (IOException | IllegalArgumentException exception) {
+            error("Nie można wczytać rysunku. Bieżący rysunek pozostaje bez zmian.", exception);
+        }
+    }
+
     private FileChooser chooser() {
         FileChooser chooser = new FileChooser();
         chooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Rysunek JSON", "*.json"));

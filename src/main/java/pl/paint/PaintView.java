@@ -42,6 +42,10 @@ toolbar.getItems().add(polygon);
         save.setOnAction(event -> documents.save());
         file.getItems().add(save);
 
+        MenuItem load = new MenuItem("Wczytaj");
+        load.setOnAction(event -> documents.load());
+        file.getItems().add(load);
+
         setTop(new VBox(new MenuBar(file, info), toolbar));
         setCenter(canvas);
         Rectangle clip = new Rectangle();
