@@ -1,4 +1,6 @@
-package pl.paint;
+package pl.paint.ui;
+
+
 
 import java.util.List;
 import javafx.scene.layout.Pane;

@@ -1,4 +1,6 @@
-package pl.paint;
+package pl.paint.shapes;
+
+
 
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Ellipse;

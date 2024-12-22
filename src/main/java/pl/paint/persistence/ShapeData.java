@@ -1,4 +1,9 @@
-package pl.paint;
+package pl.paint.persistence;
+
+import pl.paint.shapes.EditableEllipse;
+import pl.paint.shapes.EditableRectangle;
+import pl.paint.shapes.EditablePolygon;
+import pl.paint.shapes.ShapeType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,11 +45,38 @@ public final class ShapeData {
         data.scaleX = shape.getScaleX();
         data.scaleY = shape.getScaleY();
         if (shape.getFill() instanceof Color color) data.colorHex = color.toString();
+        data.validate();
         return data;
     }
 
-    public Shape toShape() {
+    private void validate() {
         if (type == null) throw new IllegalArgumentException("Missing or unknown shape type");
+        for (double value : new double[]{x, y, radiusX, radiusY, width, height,
+                rotateAngle, translateX, translateY, scaleX, scaleY}) {
+            if (!Double.isFinite(value)) throw new IllegalArgumentException("Shape values must be finite");
+        }
+        if (scaleX <= 0 || scaleY <= 0) throw new IllegalArgumentException("Scale must be positive");
+        switch (type) {
+            case RECTANGLE -> {
+                if (width <= 0 || height <= 0) throw new IllegalArgumentException("Rectangle size must be positive");
+            }
+            case ELLIPSE -> {
+                if (radiusX <= 0 || radiusY <= 0) throw new IllegalArgumentException("Ellipse radii must be positive");
+            }
+            case POLYGON -> {
+                if (points == null || points.size() < 6 || points.size() % 2 != 0)
+                    throw new IllegalArgumentException("Polygon needs at least three coordinate pairs");
+                for (Double point : points) {
+                    if (point == null || !Double.isFinite(point))
+                        throw new IllegalArgumentException("Polygon coordinates must be finite");
+                }
+            }
+        }
+        if (colorHex != null) Color.web(colorHex);
+    }
+
+    public Shape toShape() {
+        validate();
         Shape shape = switch (type) {
             case RECTANGLE -> new EditableRectangle(x, y, width, height);
             case ELLIPSE -> new EditableEllipse(x, y, radiusX, radiusY);

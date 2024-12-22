@@ -1,4 +1,7 @@
-package pl.paint;
+package pl.paint.ui;
+
+import pl.paint.tools.ToolController;
+import pl.paint.persistence.DrawingStorage;
 
 import java.io.File;
 import java.io.IOException;

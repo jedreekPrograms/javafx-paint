@@ -1,4 +1,6 @@
-package pl.paint;
+package pl.paint.shapes;
+
+
 
 import javafx.geometry.Point2D;
 import javafx.scene.control.ColorPicker;

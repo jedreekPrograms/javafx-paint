@@ -1,4 +1,6 @@
-package pl.paint;
+package pl.paint.shapes;
+
+
 
 import javafx.geometry.Bounds;
 import javafx.scene.shape.Ellipse;
@@ -28,7 +30,10 @@ public final class ShapeTransforms {
         double smaller = Math.min(bounds.getWidth(), bounds.getHeight());
         double larger = Math.max(bounds.getWidth(), bounds.getHeight());
         if (smaller <= 0 || !Double.isFinite(larger)) return;
-        double factor = Math.clamp(requestedFactor, MIN_SIZE / smaller, MAX_SIZE / larger);
+        double minimumFactor = MIN_SIZE / smaller;
+        double maximumFactor = MAX_SIZE / larger;
+        if (minimumFactor > maximumFactor) return;
+        double factor = Math.clamp(requestedFactor, minimumFactor, maximumFactor);
         if (shape instanceof Rectangle rectangle) {
             double cx = rectangle.getX() + rectangle.getWidth() / 2;
             double cy = rectangle.getY() + rectangle.getHeight() / 2;

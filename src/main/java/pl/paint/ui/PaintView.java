@@ -1,4 +1,9 @@
-package pl.paint;
+package pl.paint.ui;
+
+import pl.paint.tools.ToolController;
+import pl.paint.tools.EllipseTool;
+import pl.paint.tools.RectangleTool;
+import pl.paint.tools.PolygonTool;
 
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
@@ -52,6 +57,7 @@ toolbar.getItems().add(polygon);
         clip.widthProperty().bind(canvas.widthProperty());
         clip.heightProperty().bind(canvas.heightProperty());
         canvas.setClip(clip);
+        getStylesheets().add(PaintView.class.getResource("/editor.css").toExternalForm());
 
     }
 

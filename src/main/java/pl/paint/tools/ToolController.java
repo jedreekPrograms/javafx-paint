@@ -1,4 +1,6 @@
-package pl.paint;
+package pl.paint.tools;
+
+import pl.paint.ui.DrawingCanvas;
 
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;

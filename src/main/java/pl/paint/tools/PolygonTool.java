@@ -1,4 +1,7 @@
-package pl.paint;
+package pl.paint.tools;
+
+import pl.paint.ui.DrawingCanvas;
+import pl.paint.shapes.EditablePolygon;
 
 import javafx.geometry.Point2D;
 import javafx.scene.input.MouseEvent;
@@ -16,7 +19,9 @@ public final class PolygonTool implements DrawingTool {
         var points = shape.getPoints();
         if (points.size() >= 6) {
             var first = new Point2D(points.get(0), points.get(1));
-            if (point.distance(first) <= 10 || event.getClickCount() > 1) {
+            if ((point.distance(first) <= 10 || event.getClickCount() > 1)
+                        && shape.getBoundsInLocal().getWidth() >= 2
+                        && shape.getBoundsInLocal().getHeight() >= 2) {
                 finished = true;
                 return;
             }

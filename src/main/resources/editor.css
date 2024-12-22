@@ -1,0 +1,14 @@
+.root {
+    -fx-font-family: "System";
+    -fx-font-size: 13px;
+}
+.menu-bar, .tool-bar {
+    -fx-background-color: #f3f5f7;
+}
+.tool-bar {
+    -fx-padding: 8;
+    -fx-spacing: 6;
+}
+.button {
+    -fx-cursor: hand;
+}

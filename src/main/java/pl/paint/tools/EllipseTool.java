@@ -1,4 +1,7 @@
-package pl.paint;
+package pl.paint.tools;
+
+import pl.paint.ui.DrawingCanvas;
+import pl.paint.shapes.EditableEllipse;
 
 import javafx.geometry.Point2D;
 import javafx.scene.input.MouseEvent;

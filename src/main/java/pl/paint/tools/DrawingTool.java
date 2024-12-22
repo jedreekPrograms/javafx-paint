@@ -1,4 +1,6 @@
-package pl.paint;
+package pl.paint.tools;
+
+
 
 import javafx.scene.input.MouseEvent;
 
